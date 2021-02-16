@@ -1,0 +1,31 @@
+function _G.spawnBushman(level)
+	
+	local bushman = game.ReplicatedStorage.BushmanForPrinting:Clone()
+	bushman.Name = "Bushman"..level
+	bushman.Level.Value = level
+	bushman.Parent = game.Workspace
+	
+	--Set Speed
+	if level == 1 then
+		bushman.Humanoid.WalkSpeed = 6
+	elseif level == 2 then
+		bushman.Humanoid.WalkSpeed = 10
+	elseif level == 3 then
+		bushman.Humanoid.WalkSpeed = 16
+	end
+
+	
+	local currentBaseplateName = "Baseplate"..(level)
+	local currentBaseplate = game.Workspace:FindFirstChild(currentBaseplateName)
+	
+	local newX = (currentBaseplate.Size.X * (math.random() - .5) * .9) + currentBaseplate.Position.X
+	local newZ = (currentBaseplate.Size.Z * (math.random() - .5) * .9) + currentBaseplate.Position.Z	
+	
+	local bushmanCFrame = bushman:GetPrimaryPartCFrame()
+	bushman:SetPrimaryPartCFrame(CFrame.new(newX, bushmanCFrame.Y, newZ))
+
+	local bushClone = game.ReplicatedStorage.HidingBush:Clone()
+	bushClone.Parent = game.Workspace.Bushes
+	bushClone.Bush1.Position = Vector3.new(bushman.Torso.Position.X, bushClone.Bush1.Position.Y, bushman.Torso.Position.Z)
+	
+end
