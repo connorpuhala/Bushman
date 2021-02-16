@@ -1,7 +1,7 @@
 # Bushman
 Multiplayer Online Game written in Lua
 
-![Alt text](Screen Shot 2021-02-15 at 8.29.02 PM.png?raw=true "Optional Title")
+![Image of Yaktocat](https://github.com/connorpuhala/Bushman/blob/main/Screen%20Shot%202021-02-15%20at%208.29.02%20PM.png)
 
 Due to concerns by business parters over the publicizing of our code, I cannot share the entirity of the codebase but here are a few statistics...
 
