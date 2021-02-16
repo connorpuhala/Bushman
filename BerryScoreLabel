@@ -1,0 +1,26 @@
+local count = 0
+
+function berryScoreUpdate()
+	
+	if script.Parent.Value > script.Parent.Parent.Parent.HighScoreGui.HighScore.Value then
+		script.Parent.Parent.Parent.HighScoreGui.HighScore.Value = script.Parent.Value
+		script.Parent.Parent.Parent.HighScoreGui.HighScoreLabel.Text = "HIGH SCORE : "..script.Parent.Value
+	end
+
+	script.Parent.Parent.BerryLabel.Text = script.Parent.Value.." BERRIES"
+	count += 1
+	
+	if count > 20 then
+		--game.ReplicatedStorage.SaveBerries:FireServer(script.Parent.Value)
+		count = 0
+	end
+	
+	if script.Parent.Value ~= 0 then
+		script.Parent.Parent.BerryLabel.BackgroundColor3 = Color3.new(0.0654154, 0.501808, 0.250996)
+	else
+		script.Parent.Parent.BerryLabel.BackgroundColor3 = Color3.new(0.988907, 0.400473, 0.399954)
+	end
+
+end
+
+script.Parent.Changed:Connect(berryScoreUpdate)
