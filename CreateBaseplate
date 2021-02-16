@@ -1,0 +1,25 @@
+local gap = 0
+
+function _G.createBaseplate(level)
+	
+	local baseplateClone = game.ReplicatedStorage.Baseplate:Clone()
+	baseplateClone.Name = "Baseplate"..level
+	
+	local previousFinishPlatformName
+	if level == 1 then
+		previousFinishPlatformName = "SpawnLocation"
+	else
+		previousFinishPlatformName = "FinishPlatform"..(level - 1)
+	end
+	local previousFinishPlatform = game.Workspace:FindFirstChild(previousFinishPlatformName)
+	
+	local randomX = math.random(baseplateClone.Size.X - 30, baseplateClone.Size.X + 30)
+	local randomZ = math.random(baseplateClone.Size.Z - 30, baseplateClone.Size.Z + 30)
+
+	baseplateClone.Size = Vector3.new(randomX, 2, randomZ)
+	
+	baseplateClone.Parent = game.Workspace
+	local baseZ = (baseplateClone.Size.Z/2) + (previousFinishPlatform.Size.Z/2) + gap
+	baseplateClone.Position = previousFinishPlatform.Position + Vector3.new(0, 0, baseZ)
+	
+end
