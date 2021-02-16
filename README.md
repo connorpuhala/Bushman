@@ -1,5 +1,5 @@
 # Bushman
-Multiplayer Online Game written in Lua
+Multiplayer Online Game written in Lua  
 Playable here: https://www.roblox.com/games/5935136733/Bushman-BETA  
 
 ![Image of Bushman](https://github.com/connorpuhala/Bushman/blob/main/Screen%20Shot%202021-02-15%20at%208.29.02%20PM.png)
