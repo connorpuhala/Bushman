@@ -1,0 +1,36 @@
+
+function _G.createBerries(level)
+	
+
+	local currentBaseplateName = "Baseplate"..(level)
+	local currentBaseplate = game.Workspace:FindFirstChild(currentBaseplateName)
+	local berryNumber
+	
+	if level == 1 then
+		berryNumber = 5
+	elseif level == 2 then
+		berryNumber = 8
+	elseif level == 3 then
+		berryNumber = 12
+	end
+	
+	for i = 1, berryNumber do
+		local berryClone = game.ReplicatedStorage.Berries:Clone()
+
+		local newX = (currentBaseplate.Size.X * (math.random() - .5) * .9) + currentBaseplate.Position.X
+		local newY = currentBaseplate.Position.Y + currentBaseplate.Size.Y/2
+		local newZ = (currentBaseplate.Size.Z * (math.random() - .5) * .9) + currentBaseplate.Position.Z
+		
+		
+		local bushClone = game.ReplicatedStorage.BerryBushOG:Clone()
+		bushClone.Name = "BerryBush-"..(level).."-"..i
+		bushClone.Parent = game.Workspace.BerryBushes
+		bushClone.Bush1.Position = Vector3.new(newX, newY + bushClone.Bush1.Size.Y/4, newZ)
+
+		local berriesCFrame = berryClone:GetPrimaryPartCFrame()
+		berryClone:SetPrimaryPartCFrame(CFrame.new(newX - 1, newY + bushClone.Bush1.Size.Y/4, newZ))
+		berryClone.Name = "Berries-"..(level).."-"..i
+		berryClone.Level.Value = level
+		berryClone.Parent = game.Workspace.Berries
+	end
+end
