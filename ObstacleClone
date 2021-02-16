@@ -1,0 +1,69 @@
+function _G.createObstacles(level)
+	
+	local currentBaseplateName = "Baseplate"..(level)
+	local currentBaseplate = game.Workspace:FindFirstChild(currentBaseplateName)
+	
+	local frequency = 16
+	local howMany = currentBaseplate.Size.Magnitude / frequency
+	
+	for i = 1, howMany do
+		
+		local clone = game.ReplicatedStorage.BlockerOG:Clone()
+		clone.Name = "Blocker "..level.."."..i
+		clone.Level.Value = level
+		
+		--Size
+		local randomSizeX = math.random(15,30)
+		local randomSizeY = math.random(8,14)
+		local randomSizeZ = math.random(1,3)
+		
+		if randomSizeY >= 8 then
+			--randomSizeY += 20
+		end
+		
+		if randomSizeX >= (currentBaseplate.Size.X *.8) then
+			--randomSizeX *= .5
+		end
+		
+		clone.Size = Vector3.new(randomSizeX, randomSizeY, randomSizeZ)
+		
+		--Angle
+		--local randomAngle = (math.random() * 2 - 1) * (20)
+		--clone.Orientation = Vector3.new(clone.Orientation.X, randomAngle, clone.Orientation.Z)
+		
+		clone.Parent = game.Workspace.Obstacles
+		
+		--Position and Size
+
+		local baseX = currentBaseplate.Size.X * (math.random() - .5)
+		local baseZ = currentBaseplate.Size.Z * (math.random() - .5)
+		
+		if baseX < 10 and baseX > -10 then
+			
+		elseif baseX > 0 then
+			baseX = math.random(15,50)
+		else
+			baseX = math.random(-50,-15)
+		end
+		
+		local xCoord = currentBaseplate.Position.X + (baseX)
+		
+		local yCoord = currentBaseplate.Position.Y + currentBaseplate.Size.Y/2 + clone.Size.Y/2 + math.random(0, 2)
+		local zCoord = currentBaseplate.Position.Z + (baseZ)
+		
+		if zCoord - clone.Size.Z/2 <= currentBaseplate.Position.Z - currentBaseplate.Size.Z/2 + 4 then
+			zCoord += 4
+		end
+		
+		if zCoord + clone.Size.Z/2 >= currentBaseplate.Position.Z + currentBaseplate.Size.Z/2 - 4 then
+			zCoord -= 4
+		end
+
+		local newPos = Vector3.new(xCoord, yCoord, zCoord)
+		clone.Position = newPos
+		
+		i += 1
+	end
+	
+end
+
