@@ -9,6 +9,6 @@ Due to concerns by business parters over the publicizing of our code, I cannot s
 Total Scripts: 30  
 Total Lines of Code: 2000  
 Complex Client/Server Relationship Navigation  
-Scripting Language similar to Javascript or Actionscript (Adobe Flash cripting language)  
+Scripting Language similar to Javascript or Actionscript (Adobe Flash scripting language)  
 
 Feel free to look at a few of the uploaded scripts to get a gist for some of the scripting that makes the game functional.
